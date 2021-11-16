@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PlaySound from './components/PlaySound/playsound';
 import './App.css';
-
 
 // const [lastRace, setLastRaceResult] = useState(""); // Remova o array de notes que existia na versão anterior
 
@@ -43,6 +43,7 @@ function App() {
         <img src="/f1_logo.png" className=".f1Logo" />
       </div>
 
+      <PlaySound />
       <h3 className="lastRace"> {place}</h3>
       <h4 className="year"> {season} </h4>
       Primeiro colocado: {firstPlace} <br/>
