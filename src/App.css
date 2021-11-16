@@ -12,18 +12,3 @@
   width: 100%;
   height: auto;
 }
-
-.lastRace {
-  font-family: F1Black;
-  font-size: 24px;
-  line-height: 28px;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-  margin-top: 10px;
-  text-transform: uppercase;
-}
-
-.year{
-  font-family: F1Wide;
-  font-size: 12px ;
-}
