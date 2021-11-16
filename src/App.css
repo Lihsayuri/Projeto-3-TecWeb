@@ -1,38 +1,29 @@
-.App {
+.header {
+  width: 100%;
+  background: #e10600;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 101;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.f1Logo {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.lastRace {
+  font-family: F1Black;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.year{
+  font-family: F1Wide;
+  font-size: 12px ;
 }

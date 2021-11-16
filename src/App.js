@@ -8,12 +8,25 @@ import './App.css';
 
 function App() {
 
+  const [firstPlace, setFirstPlace] = useState("");
+  const [secondPlace, setSecondPlace] = useState("");
+  const [thirdPlace, setThirdPlace] = useState("");
+  const [season, setSeason] = useState("")
+  const [place, setPlace] = useState("")
+
   const loadData = () => {
     axios
     .get("http://ergast.com/api/f1/current/last/results.json")
     .then((res) => {
         // setLastRaceResult(res.data);
-        console.log("ESSE É O RES.DATA: ", res.data);
+        setSeason(res.data.MRData.RaceTable.season)
+        setPlace(res.data.MRData.RaceTable.Races[0].Circuit.Location.country+", "+ res.data.MRData.RaceTable.Races[0].Circuit.circuitName)
+        setFirstPlace(res.data.MRData.RaceTable.Races[0].Results[0].Driver.givenName+" "+res.data.MRData.RaceTable.Races[0].Results[0].Driver.familyName)
+        setSecondPlace(res.data.MRData.RaceTable.Races[0].Results[1].Driver.givenName+" "+res.data.MRData.RaceTable.Races[0].Results[1].Driver.familyName)
+        setThirdPlace(res.data.MRData.RaceTable.Races[0].Results[2].Driver.givenName+" "+res.data.MRData.RaceTable.Races[0].Results[2].Driver.familyName)
+
+        console.log("ESSE É O RES.DATA: ", res.data.MRData.RaceTable.Races[0]);
+
     });
   }
 
@@ -25,22 +38,18 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <div className="header">
+        <img src="/f1_logo.png" className=".f1Logo" />
+      </div>
+
+      <h3 className="lastRace"> {place}</h3>
+      <h4 className="year"> {season} </h4>
+      Primeiro colocado: {firstPlace} <br/>
+      Segundo colocado: {secondPlace} <br/>
+      Terceiro colocado: {thirdPlace} <br/>
+
+    </main>
   );
 }
 
