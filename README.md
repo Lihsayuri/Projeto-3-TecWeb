@@ -3,5 +3,6 @@ Projeto 3 de Tecnologias Web feito por:
 - Lívia Sayuri Makuta;
 
 Obs: coisas para instalar
-npm install axios
-npm install react-sound --save --legacy-peer-deps
+npm install axios <br>
+npm install react-sound --save --legacy-peer-deps <br>
+npm install react-router-dom
