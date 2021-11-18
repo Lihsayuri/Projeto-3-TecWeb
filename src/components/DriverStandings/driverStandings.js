@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './standings.css'
+import './driverStandings.css'
 
-function Standings() {
+function DriverStandings() {
 
   const [positions, setPositions] = useState([]);
   const [drivers, setDrivers] = useState([]);
@@ -81,4 +81,4 @@ function Standings() {
   );
 }
 
-export default Standings;
+export default DriverStandings;

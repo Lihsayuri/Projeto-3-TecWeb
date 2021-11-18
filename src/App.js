@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from "axios";
 import PlaySound from './components/PlaySound/playsound';
 import Home from './components/Home/home';
-import Standings from './components/Standings/standings';
+import DriverStandings from './components/DriverStandings/driverStandings';
 import Menu from './components/Menu/menu';
 import './App.css';
 
@@ -20,7 +20,7 @@ function App() {
           <Menu />
         </div>
               <Routes>
-                <Route path='/standings' element={<Standings />} />
+                <Route path='/driver_standings' element={<DriverStandings />} />
                 <Route path='/' exact element={<Home />} />
               </Routes>
         <PlaySound />
