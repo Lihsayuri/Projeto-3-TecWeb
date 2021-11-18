@@ -5,6 +5,7 @@ import axios from "axios";
 import PlaySound from './components/PlaySound/playsound';
 import Home from './components/Home/home';
 import DriverStandings from './components/DriverStandings/driverStandings';
+import ConstructorStandings from './components/ConstructorStandings/constructorStandings';
 import Menu from './components/Menu/menu';
 import './App.css';
 
@@ -20,8 +21,9 @@ function App() {
           <Menu />
         </div>
               <Routes>
-                <Route path='/driver_standings' element={<DriverStandings />} />
-                <Route path='/' exact element={<Home />} />
+                <Route path='/' exact element={<Home />} />                
+                <Route path='/driver-standings' element={<DriverStandings/>} />
+                <Route path='/constructor-standings' element={<ConstructorStandings/>} />
               </Routes>
         <PlaySound />
       </main>
