@@ -4,6 +4,7 @@ import './home.css';
 
 
 function Home() {
+  const [isLoading, setLoading] = useState(true);
 
   const [standings, setStandings] = useState("");
   const [points, setPoints] = useState("");
@@ -18,6 +19,15 @@ function Home() {
   const [city, setCity] = useState("");
 
   const loadData = () => {
+    axios
+    .get("http://ergast.com/api/f1/current/last/qualifying.json")
+    .then((response) => {
+      setQualiFirst(response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.familyName);
+      setQualiSecond(response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.familyName);
+      setQualiThird(response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.familyName);
+      // console.log("QUALI: ", response.data.MRData );
+    });
+
     axios
     .get("http://ergast.com/api/f1/current/last/results.json")
     .then((res) => {
@@ -34,44 +44,43 @@ function Home() {
 
         setStandings(colocacoes);
         setPoints(pontos);
-        console.log("ESSE É O RES.DATA: ", res.data.MRData.RaceTable.Races[0]);
-        console.log("OLHA AI: ", colocacoes)
-    });
-    axios
-    .get("http://ergast.com/api/f1/current/last/qualifying.json")
-    .then((response) => {
-      setQualiFirst(response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.familyName);
-      setQualiSecond(response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.familyName);
-      setQualiThird(response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.familyName);
-      console.log("QUALI: ", response.data.MRData );
+        setLoading(false);
+        // console.log("ESSE É O RES.DATA: ", res.data.MRData.RaceTable.Races[0]);
+        // console.log("OLHA AI: ", colocacoes)
     });
   }
 
 
   useEffect(() => {
       loadData();
-  }, []);
+  }, [standings]);
 
-
-
+  // console.log("PRINTANDO AQUI: ",standings)
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <main>
-      <h3 className="lastRace"> {place}</h3>
-      <h4 className="year"> {season} </h4>
-      <h5 className="city"> {city} </h5>  
+      <div className="greyBox">
+        <h3 className="lastRace"> {place}</h3>
+        <h4 className="year"> {season} </h4>
+        <h5 className="city"> {city} </h5>  
+      </div>
       
-      <div className="row">
-        <div className="columns">
-            {standings.map((position) => (
-              <p>{position}</p>
-                ))}
-        </div>
+      <div className="table">
+        <div className="row">
+          <div className="columns">
+              {standings.map((position) => (
+                <p>{position}</p>
+                  ))}
+          </div>
 
-        <div className="columns">
-            {points.map((point) => (
-              <p>{point}</p>
-                ))}
+          <div className="columns">
+              {points.map((points) => (
+                <p>{points}</p>
+                  ))}
+          </div>
         </div>
       </div>
 
