@@ -8,7 +8,24 @@
     text-transform: uppercase;
   }
   
-  .year{
-    font-family: F1Wide;
-    font-size: 12px ;
+.year{
+  font-family: F1Wide;
+  font-size: 12px ;
   }
+
+.city{
+  font-family: F1Regular;
+  font-size: 10px;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.columns{
+  margin-right: 0.5rem;
+  padding: 0.25rem;
+}
