@@ -13,20 +13,20 @@ import './App.css';
 function App() {
 
   return (
-    <main>
-      <div className="header">
-        <img src="/f1_logo.png" className=".f1Logo" />
-      </div>
-      <Router>
-            <Menu />
-            <Routes>
-              <Route path='/standings' element={<Standings />} />
-              <Route path='/' exact element={<Home />} />
-            </Routes>
-        </Router>
+    <Router>
+      <main>
+        <div className="header">
+          <img src="/f1_logo.png" className=".f1Logo" />
+          <Menu />
+        </div>
+              <Routes>
+                <Route path='/standings' element={<Standings />} />
+                <Route path='/' exact element={<Home />} />
+              </Routes>
+        <PlaySound />
+      </main>
+    </Router>
 
-      <PlaySound />
-    </main>
   );
 }
 
