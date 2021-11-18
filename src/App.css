@@ -8,7 +8,12 @@
 }
 
 .f1Logo {
-  display: block;
-  width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+  justify-content: flex-start;
+  width: 10%;
+  height: 15%;
+  padding: 0%;
+  margin: 0%;
 }

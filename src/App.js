@@ -17,7 +17,7 @@ function App() {
     <Router>
       <main>
         <div className="header">
-          <img src="/f1_logo.png" className=".f1Logo" />
+          <img src="/f1_logo.png" className="f1Logo" />
           <Menu />
         </div>
               <Routes>

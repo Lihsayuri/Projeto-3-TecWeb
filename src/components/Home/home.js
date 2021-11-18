@@ -38,8 +38,10 @@ function Home() {
         setPlace(res.data.MRData.RaceTable.Races[0].Circuit.Location.country+", "+ res.data.MRData.RaceTable.Races[0].Circuit.circuitName);
         setCity(res.data.MRData.RaceTable.Races[0].raceName)
         for (let i = 0; i < res.data.MRData.RaceTable.Races[0].Results.length ; i++ ){
-          colocacoes.push(res.data.MRData.RaceTable.Races[0].Results[i].Driver.givenName+" "+res.data.MRData.RaceTable.Races[0].Results[i].Driver.familyName);
-          pontos.push(res.data.MRData.RaceTable.Races[0].Results[i].points);
+          let piloto = res.data.MRData.RaceTable.Races[0].Results[i].position+ ". "+" "+ res.data.MRData.RaceTable.Races[0].Results[i].Driver.givenName+" "+res.data.MRData.RaceTable.Races[0].Results[i].Driver.familyName;
+          let ponto = res.data.MRData.RaceTable.Races[0].Results[i].points;
+          colocacoes.push(piloto);
+          pontos.push(ponto);
         }
 
         setStandings(colocacoes);
@@ -67,22 +69,24 @@ function Home() {
         <h4 className="year"> {season} </h4>
         <h5 className="city"> {city} </h5>  
       </div>
-      
+
       <div className="table">
-        <div className="row">
-          <div className="columns">
+        <div className="rowHome">
+          <ul>
               {standings.map((position) => (
                 <p>{position}</p>
                   ))}
-          </div>
+          </ul>
 
-          <div className="columns">
+          <ul>
               {points.map((points) => (
                 <p>{points}</p>
                   ))}
-          </div>
+          </ul>
         </div>
       </div>
+
+      <br/>
 
 
       Quali: <br/>
