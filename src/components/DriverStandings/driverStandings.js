@@ -49,7 +49,7 @@ function DriverStandings() {
   }, []);
 
   return (
-    <body className="body">
+    <div className="body">
       <div className="row">
         <div className="columns">
           {positions.map((position) => (
@@ -77,7 +77,7 @@ function DriverStandings() {
               ))}
         </div>
       </div>
-  </body>
+  </div>
   );
 }
 

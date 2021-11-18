@@ -2,6 +2,7 @@
 
 .lastRace {
     font-family: F1Black;
+    text-align-last: center;
     font-size: 24px;
     line-height: 28px;
     letter-spacing: 1px;
@@ -12,11 +13,13 @@
   
 .year{
   font-family: F1Wide;
+  text-align-last: center;
   font-size: 12px ;
   }
 
 .city{
   font-family: F1Regular;
+  text-align-last: center;
   font-size: 10px;
 }
 
@@ -43,7 +46,8 @@
 
 .table{
   position: relative;
-  left: 350px;
+  left: 50%;
+  transform: translateX(-50%);
   top: 190px;
   width: 500px;
   margin: 0 -10px 0 -10px;
