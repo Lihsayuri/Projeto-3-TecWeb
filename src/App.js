@@ -16,17 +16,16 @@ function App() {
     <main>
       <div className="header">
         <img src="/f1_logo.png" className=".f1Logo" />
-        <Router>
+      </div>
+      <Router>
             <Menu />
             <Routes>
               <Route path='/standings' element={<Standings />} />
-              {/* <Route path='/' exact element={<Home />} /> */}
+              <Route path='/' exact element={<Home />} />
             </Routes>
         </Router>
-      </div>
 
       <PlaySound />
-      <Home />
     </main>
   );
 }
