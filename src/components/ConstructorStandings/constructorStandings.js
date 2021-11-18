@@ -5,40 +5,29 @@ import './constructorStandings.css'
 function ConstructorStandings() {
 
     const [positions, setPositions] = useState([]);
-    const [drivers, setDrivers] = useState([]);
-    const [nationalities, setNationalities] = useState([]);
-    const [car, setCar] = useState([]);
+    const [construtors, setconstrutors] = useState([]);
     const [points, setPoints] = useState([]);
-  
   
     const loadData = () => {
       axios
-      .get("http://ergast.com/api/f1/current/driverStandings.json")
+      .get("http://ergast.com/api/f1/current/constructorStandings.json")
       .then((res) => {
         let posicoes = [];
-        let pilotos = [];
-        let nacionalidades = [];
-        let carros = [];
+        let construtores = [];
         let pontos = [];
-          for (let i = 0; i < res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.length ; i++ ){
-            posicoes.push(res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].position);
-            pilotos.push(res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.givenName + " "+res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.familyName);
-            nacionalidades.push(res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Driver.nationality);
-            carros.push(res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].Constructors[0].name);
-            pontos.push(res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[i].points)
+          for (let i = 0; i < res.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.length ; i++){
+            posicoes.push(res.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[i].position);
+            construtores.push(res.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[i].Constructor.name);
+            pontos.push(res.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[i].points)
           }
   
           setPositions(posicoes);
-          setDrivers(pilotos);
-          setNationalities(nacionalidades);
-          setCar(carros);
+          setconstrutors(construtores);
           setPoints(pontos)
   
-        console.log("ESSE É O RES.DATA: ", res.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]);
+        console.log("ESSE É O RES.DATA: ", res.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings[0]);
         console.log(posicoes);
-        console.log(pilotos);
-        console.log(nacionalidades);
-        console.log(carros);
+        console.log(construtores);
         console.log(pontos);
       });
     }
@@ -57,20 +46,10 @@ function ConstructorStandings() {
                 ))}
           </div>
           <div className="columns">
-            {drivers.map((driver) => (
-              <p >{driver}</p>
+            {construtors.map((construtor) => (
+              <p >{construtor}</p>
                 ))}
           </div> 
-          <div className="columns">
-            {nationalities.map((nationality) => (
-              <p >{nationality}</p>
-                ))}
-          </div>
-          <div className="columns">
-            {car.map((car) => (
-              <p >{car}</p>
-                ))} 
-          </div>
           <div className="columns">
             {points.map((point) => (
               <p >{point}</p>

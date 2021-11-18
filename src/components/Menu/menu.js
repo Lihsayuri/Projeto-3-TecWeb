@@ -9,8 +9,11 @@ function Menu() {
         <Link to="/">
             Home
         </Link>
-        <Link to="/driver_standings">
+        <Link to="/driver-standings">
             Driver standings
+        </Link>
+        <Link to="/constructor-standings">
+            Team standings
         </Link>
     </>
   );
