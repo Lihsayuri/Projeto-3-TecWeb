@@ -59,8 +59,14 @@
 ul{
   margin: 0%;
   padding: 0%;
+  white-space: nowrap;
   margin-right: 7rem;
   margin-left: 3rem
+}
+
+.fonte{
+  font-family: F1Regular;
+  font-size: 1rem;
 }
 /* 
 .table{

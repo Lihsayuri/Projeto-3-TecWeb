@@ -74,13 +74,13 @@ function Home() {
         <div className="rowHome">
           <ul>
               {standings.map((position) => (
-                <p>{position}</p>
+                <p className="fonte">{position}</p>
                   ))}
           </ul>
 
           <ul>
               {points.map((points) => (
-                <p>{points}</p>
+                <p className="fonte">{points}</p>
                   ))}
           </ul>
         </div>
