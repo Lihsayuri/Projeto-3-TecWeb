@@ -10,7 +10,22 @@
     width: 40%;
 }
 
-.columns{
-    margin-right: 0.5rem;
-    padding: 0.25rem;
+.columnsDriverStandings{
+    margin-right: 2rem ;
+    padding: 0.25%;
+    white-space: nowrap;
+    width: 650px;
+
 }
+
+.tableDriverStandings{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 190px;
+    width: 550px;
+    margin: 0; 
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+  }

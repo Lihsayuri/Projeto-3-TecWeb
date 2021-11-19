@@ -49,29 +49,29 @@ function DriverStandings() {
   }, []);
 
   return (
-    <div className="body">
+    <div className="tableDriverStandings">
       <div className="row">
-        <div className="columns">
+        <div className="columnsDriverStandings">
           {positions.map((position) => (
             <p>{position}</p>
               ))}
         </div>
-        <div className="columns">
+        <div className="columnsDriverStandings">
           {drivers.map((driver) => (
             <p >{driver}</p>
               ))}
         </div> 
-        <div className="columns">
+        <div className="columnsDriverStandings">
           {nationalities.map((nationality) => (
             <p >{nationality}</p>
               ))}
         </div>
-        <div className="columns">
+        <div className="columnsDriverStandings">
           {car.map((car) => (
             <p >{car}</p>
               ))} 
         </div>
-        <div className="columns">
+        <div className="columnsDriverStandings">
           {points.map((point) => (
             <p >{point}</p>
               ))}
