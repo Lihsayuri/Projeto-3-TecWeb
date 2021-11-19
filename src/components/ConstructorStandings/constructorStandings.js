@@ -50,28 +50,28 @@ function ConstructorStandings() {
         <div className="row">
           <div className="columnsConstructor">
             {positions.map((position) => (
-              <p>{position}</p>
+              <p className="fonte">{position}</p>
                 ))}
           </div>
           <div className="columnsConstructor">
             {construtors.map((construtor) => (
-              <p >{construtor}</p>
+              <p className="fonte">{construtor}</p>
                 ))}
           </div> 
           <div className="columnsConstructor">
             {nationalities.map((nationality) => (
-              <p >{nationality}</p>
+              <p className="fonte">{nationality}</p>
                 ))}
           </div> 
           <div className="columnsConstructor">
             {wins.map((win) => (
-              <p >{win}</p>
+              <p className="fonte" >{win}</p>
                 ))}
           </div> 
 
           <div className="columnsConstructor">
             {points.map((point) => (
-              <p >{point}</p>
+              <p className="fonte" >{point}</p>
                 ))}
           </div>
         </div>
