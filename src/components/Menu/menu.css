@@ -1,0 +1,58 @@
+.header {
+    width: 100%;
+    background: #e10600;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 101;
+  }
+  
+.f1Logo {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.subnav {
+    float: left;
+    overflow: hidden;
+}
+  
+.subnav .subnavbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.header Link:hover, .subnav:hover .subnavbtn {
+    background-color: rgb(0, 0, 0);
+}
+
+.subnav-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    z-index: 1;
+}
+
+.subnav-content Link {
+    float: left;
+    color: white;
+    text-decoration: none;
+}
+
+.subnav-content a:hover {
+    background-color: rgb(5, 5, 5);
+    color: rgb(255, 255, 255);
+}
+
+.subnav:hover .subnav-content {
+    display: block;
+}

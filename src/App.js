@@ -16,15 +16,12 @@ function App() {
   return (
     <Router>
       <main>
-        <div className="header">
-          <img src="/f1_logo.png" className=".f1Logo" />
-          <Menu />
-        </div>
-              <Routes>
-                <Route path='/' exact element={<Home />} />                
-                <Route path='/driver-standings' element={<DriverStandings/>} />
-                <Route path='/constructor-standings' element={<ConstructorStandings/>} />
-              </Routes>
+        <Menu />
+        <Routes>
+          <Route path='/' exact element={<Home />} />                
+          <Route path='/driver-standings' element={<DriverStandings/>} />
+          <Route path='/constructor-standings' element={<ConstructorStandings/>} />
+        </Routes>
         <PlaySound />
       </main>
     </Router>

@@ -53,7 +53,7 @@ function Home() {
 
   useEffect(() => {
       loadData();
-  }, [standings]);
+  }, []);
 
   // console.log("PRINTANDO AQUI: ",standings)
   if (isLoading) {
