@@ -25,7 +25,6 @@ function App() {
         <PlaySound />
       </main>
     </Router>
-
   );
 }
 

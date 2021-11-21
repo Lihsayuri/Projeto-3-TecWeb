@@ -7,16 +7,19 @@ function Menu() {
   
   return (
     <div className="header">
-      <img src="/f1_logo.png" className=".f1Logo" />
-      <Link to="/">
+      <img src="/f1_logo.png" className="f1Logo" />
+      <div className="links-box">
+        <Link className="link" to="/">
             Home
-      </Link>
-      <Link to="/driver-standings">
-          Driver standings
-      </Link>
-      <Link to="/constructor-standings">
-          Team standings
-      </Link>
+        </Link>
+        <Link className="link" to="/driver-standings">
+            Driver standings
+        </Link>
+        <Link className="link" to="/constructor-standings">
+            Team standings
+        </Link> 
+      </div>
+      
     </div>
   );
 }

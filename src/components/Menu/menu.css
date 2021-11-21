@@ -1,16 +1,48 @@
 .header {
-    width: 100%;
-    background: #e10600;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-    z-index: 101;
-  }
+  height: 4vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #e10600;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 101;
+}
   
+.header .links-box {
+  display: flex;
+}
+
 .f1Logo {
-    display: block;
-    width: 100%;
-    height: auto;
+  margin-left: 1rem;
+  height: 50%;
+}
+
+.links-box{
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  margin-right: 10%;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10%;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+}
+
+.link:hover{
+  background-color: black;
 }
 
 .subnav {

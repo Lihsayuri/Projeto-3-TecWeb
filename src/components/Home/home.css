@@ -1,5 +1,8 @@
+
+
 .lastRace {
     font-family: F1Black;
+    text-align-last: center;
     font-size: 24px;
     line-height: 28px;
     letter-spacing: 1px;
@@ -10,19 +13,18 @@
   
 .year{
   font-family: F1Wide;
+  text-align-last: center;
   font-size: 12px ;
   }
 
 .city{
   font-family: F1Regular;
+  text-align-last: center;
   font-size: 10px;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
-  width: 40%;
-  justify-content: space-between;
+.rowHome{
+  display: inline-flex;
 }
 
 .columns{
@@ -44,10 +46,34 @@
 
 .table{
   position: relative;
-  margin: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 190px;
+  width: 500px;
+  margin: 0 -10px 0 -10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+}
+
+ul{
+  margin: 0%;
+  padding: 0%;
+  white-space: nowrap;
+  margin-right: 7rem;
+  margin-left: 3rem
+}
+
+.fonte{
+  font-family: F1Regular;
+  font-size: 1rem;
+}
+/* 
+.table{
+  position: relative;
   width: 50%;
   border-width: 1px;
   border-radius: 5%;
   background-color: white;
   border-color: black;
-}
+} */
