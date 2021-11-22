@@ -1,3 +1,9 @@
+.menu-holder{
+  display: flex;
+  flex-direction: column;
+  height: 8vw;
+}
+
 .header {
   height: 4vw;
   display: flex;
@@ -20,17 +26,29 @@
 }
 
 .links-box{
+  position: absolute;
   height: 100%;
-  width: 100%;
+  width: 70%;
   justify-content: space-evenly;
-  margin-right: 10%;
+  left: 15%;
+}
+
+.teams-div {
+  padding-left: 20%;
+  padding-right: 20%;
+  display: flex;
+  background-color: black;
+  z-index: 10;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  height: 4vw;
 }
 
 .link {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 10%;
+  width: 12%;
   -moz-transition: all .2s ease-in;
   -o-transition: all .2s ease-in;
   -webkit-transition: all .2s ease-in;
@@ -43,6 +61,52 @@
 
 .link:hover{
   background-color: black;
+}
+
+.teams-button{
+  font-size: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 12%;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+}
+
+.teams-button:hover{
+  background-color: black;
+}
+
+.teams-button:hover + .teams-div{
+  display: none;
+}
+
+.teams-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 10vw;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  border-bottom-right-radius: 10%;
+}
+
+.teams-link:hover{
+  background-color: #e10600;
 }
 
 .subnav {
