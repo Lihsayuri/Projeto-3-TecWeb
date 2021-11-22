@@ -36,7 +36,7 @@
 .teams-div {
   padding-left: 20%;
   padding-right: 20%;
-  display: flex;
+  display: none;
   background-color: black;
   z-index: 10;
   justify-content: space-evenly;
