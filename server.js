@@ -28,3 +28,26 @@ const f1 = async (team) => {
 };
 
 f1('Red-Bull').then(document => console.log("Peguei dados"));
+
+
+const f1Images = async (team) => {
+  try {
+    const { data } = await axios.get(`https://www.formula1.com/en.html`);
+    const dom = new JSDOM(data, {
+      runScripts: "outside-only",
+      resources: "usable"
+    });
+    const { document } = dom.window;
+    const firstPlace = document.querySelector('.f1-podium--position.pos--1.d-none.d-md-inline-block')
+    const driverClass = firstPlace.querySelector('.driver-image')
+    const pictureFirstPlace = driverClass.querySelector('.lazy').getAttribute('data-src')
+
+    console.log('https://www.formula1.com' + pictureFirstPlace)
+    return pictureFirstPlace
+
+  } catch (error) {
+    throw error;
+  }
+};
+
+f1Images().then(document => console.log("Peguei dados2"));

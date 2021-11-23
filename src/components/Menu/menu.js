@@ -16,6 +16,8 @@ function Menu() {
   function hideTeams(){
     teamDiv.style.display="none";
   }
+
+  const firstPlace = 'https://www.formula1.com/content/dam/fom-website/2018-redesign-assets/homepage/driver-standings-component/MAXVER01.png.transform/4col/image.png'
   return (
     <div className="menu-holder">
       <div className="header">
@@ -41,7 +43,7 @@ function Menu() {
           Alfa Romeo
         </Link>
         <Link className="teams-link" to=''>
-          alphaTauri
+          AlphaTauri
         </Link>
         <Link className="teams-link" to=''>
           Alpine

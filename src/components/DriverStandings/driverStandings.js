@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './driverStandings.css'
+const { JSDOM } = require("jsdom")
 
 function DriverStandings() {
 
@@ -9,6 +10,7 @@ function DriverStandings() {
   const [nationalities, setNationalities] = useState([]);
   const [car, setCar] = useState([]);
   const [points, setPoints] = useState([]);
+  const [firstPlaceSrc, setFirstPlaceSrc] = useState("")
 
 
   const loadData = () => {
@@ -43,41 +45,64 @@ function DriverStandings() {
     });
   }
 
+  const f1Images = async () => {
+    try {
+      const { data } = await axios.get(`https://www.formula1.com/en.html`);
+      const dom = new JSDOM(data, {
+        runScripts: "outside-only",
+        resources: "usable"
+      });
+      const { document } = dom.window;
+      const firstPlace = document.querySelector('.f1-podium--position.pos--1.d-none.d-md-inline-block')
+      const driverClass = firstPlace.querySelector('.driver-image')
+      const pictureFirstPlace = driverClass.querySelector('.lazy').getAttribute('data-src')
+  
+      console.log('https://www.formula1.com' + pictureFirstPlace)
+      return 'https://www.formula1.com'+ pictureFirstPlace
+  
+    } catch (error) {
+      throw error;
+    }
+  };
+  
 
   useEffect(() => {
       loadData();
   }, []);
 
   return (
-    <div className="tableDriverStandings">
-      <div className="row">
-        <div className="columnsDriverStandings">
-          {positions.map((position) => (
-            <p className="fonte">{position}</p>
-              ))}
+    <>
+      {/* <p>{firstPlaceSrc}</p> */}
+      <div className="tableDriverStandings">
+        <div className="row">
+          <div className="columnsDriverStandings">
+            {positions.map((position) => (
+              <p className="fonte">{position}</p>
+                ))}
+          </div>
+          <div className="columnsDriverStandings">
+            {drivers.map((driver) => (
+              <p className="fonte">{driver}</p>
+                ))}
+          </div> 
+          <div className="columnsDriverStandings">
+            {nationalities.map((nationality) => (
+              <p className="fonte">{nationality}</p>
+                ))}
+          </div>
+          <div className="columnsDriverStandings">
+            {car.map((car) => (
+              <p className="fonte">{car}</p>
+                ))} 
+          </div>
+          <div className="columnsDriverStandings">
+            {points.map((point) => (
+              <p className="fonte">{point}</p>
+                ))}
+          </div>
         </div>
-        <div className="columnsDriverStandings">
-          {drivers.map((driver) => (
-            <p className="fonte">{driver}</p>
-              ))}
-        </div> 
-        <div className="columnsDriverStandings">
-          {nationalities.map((nationality) => (
-            <p className="fonte">{nationality}</p>
-              ))}
-        </div>
-        <div className="columnsDriverStandings">
-          {car.map((car) => (
-            <p className="fonte">{car}</p>
-              ))} 
-        </div>
-        <div className="columnsDriverStandings">
-          {points.map((point) => (
-            <p className="fonte">{point}</p>
-              ))}
-        </div>
-      </div>
-  </div>
+    </div>
+  </>
   );
 }
 
