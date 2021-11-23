@@ -1,9 +1,13 @@
+import React from 'react'
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './driverStandings.css'
-const { JSDOM } = require("jsdom")
+import './driverStandings.css' 
+
+
 
 function DriverStandings() {
+  // const { JSDOM } = require("jsdom")
+  const ReactJSDOM = require('react-jsdom');
 
   const [positions, setPositions] = useState([]);
   const [drivers, setDrivers] = useState([]);
@@ -12,6 +16,28 @@ function DriverStandings() {
   const [points, setPoints] = useState([]);
   const [firstPlaceSrc, setFirstPlaceSrc] = useState("")
 
+  const f1Images = async (setFirstPlaceSrc) => {
+    try {
+      const { data } = await axios.get(`https://www.formula1.com/en.html`);
+      const dom = new ReactJSDOM(data, {
+        runScripts: "outside-only",
+        resources: "usable"
+      });
+      console.log("PASSEI!")
+      const { document } = dom.window;
+      const firstPlace = document.querySelector('.f1-podium--position.pos--1.d-none.d-md-inline-block')
+      const driverClass = firstPlace.querySelector('.driver-image')
+      const pictureFirstPlace = driverClass.querySelector('.lazy').getAttribute('data-src')
+      console.log('https://www.formula1.com' + pictureFirstPlace)
+
+      setFirstPlaceSrc('https://www.formula1.com' + pictureFirstPlace)
+
+      return 'https://www.formula1.com' + pictureFirstPlace;
+  
+    } catch (error) {
+      throw error;
+    }
+  };
 
   const loadData = () => {
     axios
@@ -42,37 +68,21 @@ function DriverStandings() {
       console.log(nacionalidades);
       console.log(carros);
       console.log(pontos);
+
+      f1Images(setFirstPlaceSrc);
     });
+
+    
   }
 
-  const f1Images = async () => {
-    try {
-      const { data } = await axios.get(`https://www.formula1.com/en.html`);
-      const dom = new JSDOM(data, {
-        runScripts: "outside-only",
-        resources: "usable"
-      });
-      const { document } = dom.window;
-      const firstPlace = document.querySelector('.f1-podium--position.pos--1.d-none.d-md-inline-block')
-      const driverClass = firstPlace.querySelector('.driver-image')
-      const pictureFirstPlace = driverClass.querySelector('.lazy').getAttribute('data-src')
   
-      console.log('https://www.formula1.com' + pictureFirstPlace)
-      return 'https://www.formula1.com'+ pictureFirstPlace
-  
-    } catch (error) {
-      throw error;
-    }
-  };
-  
-
   useEffect(() => {
       loadData();
   }, []);
 
   return (
     <>
-      {/* <p>{firstPlaceSrc}</p> */}
+      <p>{firstPlaceSrc}</p>
       <div className="tableDriverStandings">
         <div className="row">
           <div className="columnsDriverStandings">
