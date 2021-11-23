@@ -16,7 +16,7 @@ function DriverStandings() {
   const [points, setPoints] = useState([]);
   const [firstPlaceSrc, setFirstPlaceSrc] = useState("")
 
-  const f1Images = async (setFirstPlaceSrc) => {
+  const f1Images = async () => {
     try {
       const { data } = await axios.get(`https://www.formula1.com/en.html`);
       const dom = new ReactJSDOM(data, {
@@ -69,7 +69,7 @@ function DriverStandings() {
       console.log(carros);
       console.log(pontos);
 
-      f1Images(setFirstPlaceSrc);
+      // f1Images();
     });
 
     
@@ -78,6 +78,7 @@ function DriverStandings() {
   
   useEffect(() => {
       loadData();
+      f1Images();
   }, []);
 
   return (
