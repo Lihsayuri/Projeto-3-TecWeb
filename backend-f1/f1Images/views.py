@@ -10,7 +10,7 @@ def index(request):
     return HttpResponse("Olá mundo! Este é o app notes de Tecnologias Web do Insper.")
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
 def api_driverStandings(request):
     #download f1 page
     f1Page = 'https://www.formula1.com/en.html'
@@ -47,5 +47,51 @@ def api_driverStandings(request):
 
     return linkFirstPlaceImg, linkSecondPlaceImg, linkThirdPlaceImg
 
-# api_driverStandings("GET")
-        
+@api_view(['GET'])
+def api_constructorStandings(request):
+    f1PageConstruc = 'https://www.formula1.com/en.html#constructors'
+    result2 = requests.get(f1PageConstruc)
+    result2.content
+
+# if successful parse the download into a BeautifulSoup object, which allows easy manipulation 
+    if result2.status_code == 200:
+        soup2 = BeautifulSoup(result2.content, "html.parser")
+
+    classConstruc1 = soup2.find('div',{'class':'f1-podium--top-positions constructors'})
+    classPos1 = classConstruc1.find('a', {'class':'f1-podium--position pos--1 d-none d-md-inline-block'})
+    classLogo1 = classPos1.find('img', {'class': 'lazy'})['data-src']
+    LogoImg1 = "https://www.formula1.com" + classLogo1
+
+    classCar = classPos1.find('picture', {'class': 'car-image'})
+    classCarImg = classCar.find('img', {'class': 'lazy'})['data-src']
+    linkCarImg1 = "https://www.formula1.com" + classCarImg
+
+    listaConstruc1 = [LogoImg1,linkCarImg1]
+
+    #-------------------------------------------------------------------------------------
+
+    classConstruc2 = soup2.find('div',{'class':'f1-podium--top-positions constructors'})
+    classPos2 = classConstruc2.find('a', {'class':'f1-podium--position pos--2 d-none d-md-inline-block'})
+    classLogo2 = classPos2.find('img', {'class': 'lazy'})['data-src']
+    LogoImg2 = "https://www.formula1.com" + classLogo2
+
+    classCar2 = classPos2.find('picture', {'class': 'car-image'})
+    classCarImg2 = classCar2.find('img', {'class': 'lazy'})['data-src']
+    linkCarImg2 = "https://www.formula1.com" + classCarImg2
+
+    listaConstruc2 = [LogoImg2,linkCarImg2]
+
+    #---------------------------------------------------------------------------------------
+
+    classConstruc3 = soup2.find('div',{'class':'f1-podium--top-positions constructors'})
+    classPos3 = classConstruc3.find('a', {'class':'f1-podium--position pos--3 d-none d-md-inline-block'})
+    classLogo3 = classPos3.find('img', {'class': 'lazy'})['data-src']
+    LogoImg3 = "https://www.formula1.com" + classLogo3
+
+    classCar3 = classPos3.find('picture', {'class': 'car-image'})
+    classCarImg3 = classCar3.find('img', {'class': 'lazy'})['data-src']
+    linkCarImg3 = "https://www.formula1.com" + classCarImg3
+
+    listaConstruc3 = [LogoImg3,linkCarImg3]
+    
+    return listaConstruc1, listaConstruc2, listaConstruc3         
