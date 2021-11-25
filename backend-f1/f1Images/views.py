@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import requests
-import requests
+import json
 from bs4 import BeautifulSoup
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 def index(request):
     return HttpResponse("Olá mundo! Este é o app notes de Tecnologias Web do Insper.")
@@ -45,7 +46,11 @@ def api_driverStandings(request):
     pictureThirdPlace = classDriver3Img.find('img', {'class':'lazy'})['data-src']
     linkThirdPlaceImg = "https://www.formula1.com" + pictureThirdPlace
 
-    return linkFirstPlaceImg, linkSecondPlaceImg, linkThirdPlaceImg
+    dictLinks = {"First":linkFirstPlaceImg, "Second": linkSecondPlaceImg, "Third":linkThirdPlaceImg}
+
+    # jsonFrase = json.dumps(dictLinks, ensure_ascii=False)
+    # print("ESSE É O DICT: ", jsonFrase)
+    return JsonResponse(dictLinks)
 
 @api_view(['GET'])
 def api_constructorStandings(request):
@@ -93,5 +98,8 @@ def api_constructorStandings(request):
     linkCarImg3 = "https://www.formula1.com" + classCarImg3
 
     listaConstruc3 = [LogoImg3,linkCarImg3]
-    
-    return listaConstruc1, listaConstruc2, listaConstruc3         
+
+    dictTeams = {"First": listaConstruc1, "Second": listaConstruc2, "Third": listaConstruc3}
+
+    return JsonResponse(dictTeams)
+         

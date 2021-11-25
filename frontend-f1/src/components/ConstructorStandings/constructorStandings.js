@@ -9,6 +9,9 @@ function ConstructorStandings() {
     const [points, setPoints] = useState([]);
     const [wins, setWins] = useState([]);
     const [nationalities, setNationalities] = useState([]);
+    const [firstPlaceSrc, setFirstPlaceSrc] = useState([])
+    const [secondPlaceSrc, setSecondPlaceSrc] = useState([])
+    const [thirdPlaceSrc, setThirdPlaceSrc] = useState([])
   
     const loadData = () => {
       axios
@@ -39,43 +42,74 @@ function ConstructorStandings() {
         console.log(pontos);
       });
     }
+
+    const f1Images = () => {
+      axios
+      .get("http://127.0.0.1:8000/constructor-standings")
+      .then((response) =>{
+        setFirstPlaceSrc(response.data['First'])
+        setSecondPlaceSrc(response.data['Second'])
+        setThirdPlaceSrc(response.data['Third'])
+        // console.log("ESSE É O FIRSt:", response.data['First'])
+      });
+    }
   
   
     useEffect(() => {
         loadData();
+        f1Images();
     }, []);
   
     return (
-      <div className="tableConstrucStandings">
-        <div className="row">
-          <div className="columnsConstructor">
-            {positions.map((position) => (
-              <p className="fonte">{position}</p>
-                ))}
+      <>
+        <div className="rowImg greyBox"> 
+          <div className="columnsImg">
+            {secondPlaceSrc.map((second) => (
+                  <img src={second}></img>
+                    ))}
           </div>
-          <div className="columnsConstructor">
-            {construtors.map((construtor) => (
-              <p className="fonte">{construtor}</p>
-                ))}
-          </div> 
-          <div className="columnsConstructor">
-            {nationalities.map((nationality) => (
-              <p className="fonte">{nationality}</p>
-                ))}
-          </div> 
-          <div className="columnsConstructor">
-            {wins.map((win) => (
-              <p className="fonte" >{win}</p>
-                ))}
-          </div> 
-
-          <div className="columnsConstructor">
-            {points.map((point) => (
-              <p className="fonte" >{point}</p>
-                ))}
+          <div className="columnsImg">
+            {firstPlaceSrc.map((first) => (
+                  <img src={first}></img>
+                    ))}
+          </div>
+          <div className="columnsImg">
+            {thirdPlaceSrc.map((third) => (
+                  <img src={third}></img>
+                    ))}
           </div>
         </div>
-    </div>
+        <div className="tableConstrucStandings">
+          <div className="row">
+            <div className="columnsConstructor">
+              {positions.map((position) => (
+                <p className="fonte">{position}</p>
+                  ))}
+            </div>
+            <div className="columnsConstructor">
+              {construtors.map((construtor) => (
+                <p className="fonte">{construtor}</p>
+                  ))}
+            </div> 
+            <div className="columnsConstructor">
+              {nationalities.map((nationality) => (
+                <p className="fonte">{nationality}</p>
+                  ))}
+            </div> 
+            <div className="columnsConstructor">
+              {wins.map((win) => (
+                <p className="fonte" >{win}</p>
+                  ))}
+            </div> 
+
+            <div className="columnsConstructor">
+              {points.map((point) => (
+                <p className="fonte" >{point}</p>
+                  ))}
+            </div>
+          </div>
+      </div>
+    </>
     );
   }
   

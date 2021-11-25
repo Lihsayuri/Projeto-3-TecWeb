@@ -15,29 +15,8 @@ function DriverStandings() {
   const [car, setCar] = useState([]);
   const [points, setPoints] = useState([]);
   const [firstPlaceSrc, setFirstPlaceSrc] = useState("")
-
-  const f1Images = async () => {
-    try {
-      const { data } = await axios.get(`https://www.formula1.com/en.html`);
-      const dom = new ReactJSDOM(data, {
-        runScripts: "outside-only",
-        resources: "usable"
-      });
-      console.log("PASSEI!")
-      const { document } = dom.window;
-      const firstPlace = document.querySelector('.f1-podium--position.pos--1.d-none.d-md-inline-block')
-      const driverClass = firstPlace.querySelector('.driver-image')
-      const pictureFirstPlace = driverClass.querySelector('.lazy').getAttribute('data-src')
-      console.log('https://www.formula1.com' + pictureFirstPlace)
-
-      setFirstPlaceSrc('https://www.formula1.com' + pictureFirstPlace)
-
-      return 'https://www.formula1.com' + pictureFirstPlace;
-  
-    } catch (error) {
-      throw error;
-    }
-  };
+  const [secondPlaceSrc, setSecondPlaceSrc] = useState("")
+  const [thirdPlaceSrc, setThirdPlaceSrc] = useState("")
 
   const loadData = () => {
     axios
@@ -69,10 +48,17 @@ function DriverStandings() {
       console.log(carros);
       console.log(pontos);
 
-      // f1Images();
     });
+  }
 
-    
+  const f1Images = () => {
+    axios
+    .get("http://127.0.0.1:8000/driver-standings")
+    .then((response) =>{
+      setFirstPlaceSrc(response.data['First'])
+      setSecondPlaceSrc(response.data['Second'])
+      setThirdPlaceSrc(response.data['Third'])
+    });
   }
 
   
@@ -83,7 +69,20 @@ function DriverStandings() {
 
   return (
     <>
-      <p>{firstPlaceSrc}</p>
+      <div className="rowImgDrivers greyBox">
+        <div className="columnsImgDrivers">
+          <img src={secondPlaceSrc}></img>
+          <p className="colocacoes">2º</p>
+        </div>
+        <div className="columnsImgDrivers">
+          <img src={firstPlaceSrc}></img>
+          <p className="colocacoes">1º</p>
+        </div>
+        <div className="columnsImgDrivers">
+          <img src={thirdPlaceSrc}></img>
+          <p className="colocacoes">3º</p>
+        </div>
+      </div>      
       <div className="tableDriverStandings">
         <div className="row">
           <div className="columnsDriverStandings">
