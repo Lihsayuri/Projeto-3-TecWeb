@@ -102,4 +102,50 @@ def api_constructorStandings(request):
     dictTeams = {"First": listaConstruc1, "Second": listaConstruc2, "Third": listaConstruc3}
 
     return JsonResponse(dictTeams)
-         
+
+@api_view(['GET'])        
+def api_teamInfo(request, team):
+    teamURL = f'https://www.formula1.com/en/teams/{team}.html'
+    result = requests.get(teamURL)
+    if result.status_code == 200:
+        teamDic = {}
+        driverNames = []
+        driverNums = []
+        driverImagesURL = []
+        driverDic = {}
+        statsDic = {}
+        teamLogoURL = "https://www.formula1.com"
+        
+        soup = BeautifulSoup(result.content, "html.parser")
+        teamInfo = soup.find('header', {'class':'team-details'})
+        stats = teamInfo.find('tbody')
+
+        teamLogoURL += teamInfo.find('img',{'class':'cq-dd-image'})['src']
+        
+        driverImages = teamInfo.find_all('div',{'class':'driver-image-crop-inner'})
+        for image in driverImages:
+            driverImagesURL.append("https://www.formula1.com"+image.find('img')['src'])
+        for num in teamInfo.findAll('div', {'class': 'driver-number'}):
+            driverNums.append(num.find('span').decode_contents())
+        for name in teamInfo.findAll('h1', {'class':'driver-name'}):
+            driverNames.append(name.decode_contents())
+        for i in range(len(driverNames)):
+            driverDic[f'driver{i}'] = {}
+            driverDic[f'driver{i}']['name'] = driverNames[i]
+            driverDic[f'driver{i}']['number'] = driverNums[i]  
+            driverDic[f'driver{i}']['imageURL'] = driverImagesURL[i]          
+
+        statsKeys = stats.find_all('span')
+        statsValues = stats.find_all('td',{'class':'stat-value'})
+        for i in range(len(statsKeys)):
+            statsDic[statsKeys[i].decode_contents()] = statsValues[i].decode_contents()
+        
+        teamDic['drivers'] = driverDic
+        teamDic['stats'] = statsDic
+        teamDic['teamLogo'] = teamLogoURL 
+        return JsonResponse(teamDic)
+
+    return JsonResponse({
+        'status_code': 404,
+        'error': 'The resource was not found'
+    })
