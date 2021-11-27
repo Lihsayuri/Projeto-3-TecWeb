@@ -10,18 +10,24 @@ function TeamPage(){
 
     const [driver1, setDriver1] = useState();
     const [driver2, setDriver2] = useState();
+
     const [teamStats, setTeamStats] = useState();
+    const [teamStatsKeys, setTeamStatsKeys] = useState();
+    const [teamStatsValues, setTeamStatsValues] = useState();
+
     const [teamLogo, setTeamLogo] = useState();
 
     const loadData = () => {
         axios
         .get(`http://127.0.0.1:8000/teams/${teamId}`)
         .then((response) => {
-            console.log(response.data.drivers.driver0)
             setDriver1(response.data.drivers.driver0)
             setDriver2(response.data.drivers.driver1)
             setTeamStats(response.data.stats)
             setTeamLogo(response.data.teamLogo)
+            setTeamStatsKeys(Object.keys(response.data.stats))
+            console.log(Object.values(response.data.stats))
+            setTeamStatsValues(Object.values(response.data.stats))
             setLoading(false);
         });
       }
@@ -31,16 +37,43 @@ function TeamPage(){
         loadData();
     }, [teamId]);
   
-    // console.log("PRINTANDO AQUI: ",standings)
     if (isLoading) {
       return <div>Loading...</div>;
     }
-    
+    console.log(teamStatsValues)
     return (
-        <>
-        <img src={teamLogo}></img>
-        <h1> {teamId} </h1>
-        </>
+        <div className="team-page">
+            <img className="team-logo" src={teamLogo}></img>
+            <div className="team-info">
+                <div className="stats">
+                    <div className="stats-keys">
+                        {teamStatsKeys.map((key) => (
+                        <p className="fonte">{key}</p>
+                            ))}
+                    </div>
+                    <div className="stats-values">
+                        {teamStatsValues.map((value) => (
+                        <p className="fonte">{value}</p>
+                            ))}
+                    </div>
+                </div>
+                <div className="drivers-holder">
+                    <h1 className="fonte-titulo">Drivers:</h1>
+                    <div className="drivers">
+                        <div className="driver-info">
+                            <img src={driver1.imageURL}></img>
+                            <h2 className="fonte-subtitulo">{driver1.name}</h2>
+                            <p className="fonte">{driver1.number}</p>
+                        </div>
+                        <div className="driver-info">
+                            <img src={driver2.imageURL}></img>
+                            <h2 className="fonte-subtitulo">{driver2.name}</h2>
+                            <p className="fonte">{driver2.number}</p>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
     )
 }
 

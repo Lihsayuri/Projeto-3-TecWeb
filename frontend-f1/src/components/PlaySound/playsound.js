@@ -10,7 +10,7 @@ const PlaySound =(
 
     // content: '\25BA';
     return(
-        <div>
+        <div className = "play-div">
             <button className="play" onClick={() => setIsPlaying(!isPlaying)}> {!isPlaying ? 'Play' : 'Stop'}
             </button>
             <Sound

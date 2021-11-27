@@ -9,25 +9,11 @@ function Home() {
   const [standings, setStandings] = useState("");
   const [points, setPoints] = useState("");
 
-  const [qualiFirst, setQualiFirst] = useState("");
-  const [qualiSecond, setQualiSecond] = useState("");
-  const [qualiThird, setQualiThird] = useState("");
-
-
   const [season, setSeason] = useState("");
   const [place, setPlace] = useState("");
   const [city, setCity] = useState("");
 
   const loadData = () => {
-    axios
-    .get("http://ergast.com/api/f1/current/last/qualifying.json")
-    .then((response) => {
-      setQualiFirst(response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[0].Driver.familyName);
-      setQualiSecond(response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[1].Driver.familyName);
-      setQualiThird(response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.givenName+ " "+response.data.MRData.RaceTable.Races[0].QualifyingResults[2].Driver.familyName);
-      // console.log("QUALI: ", response.data.MRData );
-    });
-
     axios
     .get("http://ergast.com/api/f1/current/last/results.json")
     .then((res) => {
@@ -85,14 +71,6 @@ function Home() {
           </ul>
         </div>
       </div>
-
-      <br/>
-
-
-      Quali: <br/>
-      Primeiro mais rápido quali: {qualiFirst} <br/>
-      Segundo mais rápido quali: {qualiSecond} <br/>
-      Terceiro mais rápido quali: {qualiThird} <br/>
     </div>
   );
 }
