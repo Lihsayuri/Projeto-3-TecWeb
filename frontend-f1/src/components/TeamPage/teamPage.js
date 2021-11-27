@@ -11,7 +11,6 @@ function TeamPage(){
     const [driver1, setDriver1] = useState();
     const [driver2, setDriver2] = useState();
 
-    const [teamStats, setTeamStats] = useState();
     const [teamStatsKeys, setTeamStatsKeys] = useState();
     const [teamStatsValues, setTeamStatsValues] = useState();
 
@@ -23,10 +22,8 @@ function TeamPage(){
         .then((response) => {
             setDriver1(response.data.drivers.driver0)
             setDriver2(response.data.drivers.driver1)
-            setTeamStats(response.data.stats)
             setTeamLogo(response.data.teamLogo)
             setTeamStatsKeys(Object.keys(response.data.stats))
-            console.log(Object.values(response.data.stats))
             setTeamStatsValues(Object.values(response.data.stats))
             setLoading(false);
         });
